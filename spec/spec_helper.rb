@@ -11,12 +11,17 @@ require 'active_support/all'
 require 'yaml'
 require 'time'
 
-Capybara.default_driver = :selenium
+Capybara.default_driver = :chrome
+Capybara.register_driver :chrome do |app|
+  caps = Selenium::WebDriver::Remote::Capabilities.chrome("chromeOptions" => {"args" => [ "--start-maximized" ]})
+  $driver = Capybara::Selenium::Driver.new(app, {:browser => :chrome, :desired_capabilities => caps})
+end
+Capybara.javascript_driver = :chrome
 APP_URL="http://drums.dojosto.com"
 
 RSpec.configure do |config|
   config.before(:suite) do
-    Capybara.default_max_wait_time = 5
+    Capybara.default_max_wait_time = 10
   end
 
   config.before(:each) do

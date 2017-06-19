@@ -9,4 +9,6 @@ group :development, :test do
   gem 'pry'
   gem 'rails', '~> 4.2', '>= 4.2.7'
   gem 'capybara-screenshot'
+  gem 'chromedriver-installer'
+  gem 'chromedriver-helper'
 end

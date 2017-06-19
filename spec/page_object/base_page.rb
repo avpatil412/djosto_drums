@@ -10,28 +10,8 @@ module BasePage
   end
 
   def click_element(selector,t=5)
-    wait_for_element(selector,t)
-    wait_for_element_to_be_visible(selector,t)
-    wait_for_element_to_be_active(selector,t)
-
-    if is_element_active(selector)
-      if ENV['BROWSER'] == 'chrome'
-        element_to_click = selector ? @driver.find_element(selector) : @driver.find_element(selector)
-        @driver.action.click(element_to_click).perform
-        # @driver.execute_script("arguments[0].scrollIntoView()" , @driver.find_element(selector))
-        # @driver.find_element(selector).click
-      else
-        scroll_to_element_js(selector)
         @driver.find_element(selector).click
-      end
-    else
-      log "Button is inactive!"
-      fail
-    end
-  rescue Selenium::WebDriver::Error::ElementNotVisibleError => e
-    log "Cannot click element with selector #{selector}"
-    save_screenshot_to("create_label","click_button#{Time.now.strftime('%Y%m%d%H%M%S%L') + ".png"}")
-    raise e
+
   end
 
   def click_element_without_scroll_js(selector,t=5)
