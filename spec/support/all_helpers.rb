@@ -1,5 +1,8 @@
 # file: support/all_helpers.rb
-#
+require './spec/spec_helper.rb'
+require 'capybara/rspec'
+require 'capybara'
+
 current_path = File.expand_path('..', __FILE__)
 $LOAD_PATH.unshift File.join(current_path, 'helpers')
 

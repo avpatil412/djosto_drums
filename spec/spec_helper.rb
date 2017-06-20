@@ -19,7 +19,7 @@ APP_URL="http://drums.dojosto.com"
 
 RSpec.configure do |config|
   config.before(:suite) do
-    Capybara.default_max_wait_time = 20
+    Capybara.default_max_wait_time = 5
     case ENV["CLIENT"]
       when nil
         client = "chrome"
