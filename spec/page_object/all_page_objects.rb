@@ -38,3 +38,8 @@ def confirm_beat_css
  "div.ng-binding.current-beat"
 end
 
+def beat_number
+  wait_until_visible(:css, "div.ng-binding.current-beat")
+  page.find(:css, "div.ng-binding.current-beat")
+end
+

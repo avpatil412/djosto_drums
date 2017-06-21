@@ -75,9 +75,8 @@ tests_cases.each do |tests|
     end
     while @helper.get_current_time < end_time do
       puts "I am playing my final beat"
-      (1..16).each do |beat_number|
-        @helper.confirm_beat(beat_number)
-      end
+      get_beat_number
+      @helper.assert_beat_play(get_beat_number)
       puts "Done playing after 16"
     end
   end

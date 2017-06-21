@@ -78,10 +78,14 @@ def change_bpm(bpm)
     end
 end
 
-def confirm_beat(beat_number)
+def assert_beat_play(beat_number)
   wait_until_visible(:css, confirm_beat_css)
   expect(page).to have_css(confirm_beat_css, text: "#{beat_number}")
 end
 
+def get_beat_number
+  beat_number.text
 end
+end
+
 
