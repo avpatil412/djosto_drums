@@ -22,17 +22,19 @@ def end_time(time)
   start_time + mins + seconds
 end
 
-def wait_until_visible(type, selector,time=5)
-  t ||= 0
+def wait_until_visible(type, selector,time=10)
+  t = 0
   begin
-    element = page.find(type, selector)
+    Capybara.default_max_wait_time
+    page.find(type,selector)
   rescue => e
     puts "Polling for the locator"
-    while (t<time) and element == 0
-      element = page.find(selector)
+    while (t<time)
       sleep 0.5
-      t+=0.5
+      t+=1
+      puts "polled #{t} time"
     end
+    page.find(type,selector)
     puts e.message
   end
 end
